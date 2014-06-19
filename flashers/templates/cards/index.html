@@ -1,0 +1,49 @@
+{% extends "cards/layout.html" %}
+{% block title %}Questions Index{% endblock %}
+{% block content %}
+  {% if last_five %} {# most recent 5 cards in a table #}
+    <div class="container col-md-9">
+      <div class="panel panel-default">
+        <div class="panel-heading">5 Most Recent Cards</div>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr class="red">
+                <th>#</th>
+                <th>Question</th>
+                <th>Answer</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for question in last_five %}
+                <tr class="{% cycle '' 'success' %}">
+                  <td>{{question.id}}</td>
+                  <td><a href="/cards/{{question.id}}/">{{question.question}}</a></td>
+                  <td>{{question.answer}}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div> <!-- end container -->
+    <div class="container col-md-9"><hr class="style-eight"/></div>
+  {% else %}
+    <p>No past questions are available.</p>
+  {% endif %}
+  {# form for uploading new cards #}
+  <form method="post" action="" class="col-md-12">
+    <div class="container">
+      <div class="well" >
+        {{ form.category }}
+      </div>
+    </div>
+    <div class="container">
+      <div class="well" >
+        {{ form.question }}
+        {{ form.answer }}
+      </div>
+    </div>
+    <button id="btn_submit" type="submit" value="Register" class="btn btn-success">Create New Card</button>
+  </form>
+{% endblock %}

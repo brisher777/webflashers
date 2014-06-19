@@ -1,0 +1,25 @@
+{% extends "cards/layout.html" %}
+{% block title %}Card detail{% endblock %}
+{% block content %}
+  {% if one_card %}
+    <div class="panel panel-default">
+      <div class="panel-heading">{{one_card.user}}::{{one_card.category}}</div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Question</th>
+            <th>Answer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{one_card.id}}</td>
+            <td>{{one_card.question}}</td>
+            <td>{{one_card.answer}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+{% endblock %}
